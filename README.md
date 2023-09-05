@@ -1,3 +1,3 @@
 # Boutique-DouceurDeLune
 
-Boutique pour recréer une application et se refaire la main sur les différentes étapes.
+Boutique pour recréer une application et se refaire la main sur les différentes étapes du développement.
