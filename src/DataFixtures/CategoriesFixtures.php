@@ -21,7 +21,7 @@ class CategoriesFixtures extends Fixture
         // ***************
         $parent = $this->createCategory("Portage", null, $manager);
 
-        $this->createCategory('Echarppes', $parent, $manager);
+        $this->createCategory('Echarpes', $parent, $manager);
         $this->createCategory('Porte-bébé', $parent, $manager);
         $this->createCategory('Test', $parent, $manager);
 
