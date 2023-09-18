@@ -25,21 +25,22 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `parent_id` int DEFAULT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_order` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_3AF34668727ACA70` (`parent_id`),
   CONSTRAINT `FK_3AF34668727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table e-commerce.categories : ~8 rows (environ)
-INSERT INTO `categories` (`id`, `parent_id`, `name`, `slug`) VALUES
-	(106, NULL, 'Portage', 'portage'),
-	(107, 106, 'Echarpes', 'echarpes'),
-	(108, 106, 'Porte-bébé', 'porte-bebe'),
-	(109, 106, 'Test', 'test'),
-	(110, NULL, 'Accessoires', 'accessoires'),
-	(111, 110, 'Biberons', 'biberons'),
-	(112, 110, 'Tétines', 'tetines'),
-	(113, 110, 'Test', 'test');
+INSERT INTO `categories` (`id`, `parent_id`, `name`, `slug`, `category_order`) VALUES
+	(106, NULL, 'Portage', 'portage', 1),
+	(107, 106, 'Echarpes', 'echarpes', 2),
+	(108, 106, 'Porte-bébé', 'porte-bebe', 3),
+	(109, 106, 'Test', 'test', 4),
+	(110, NULL, 'Accessoires', 'accessoires', 5),
+	(111, 110, 'Biberons', 'biberons', 6),
+	(112, 110, 'Tétines', 'tetines', 7),
+	(113, 110, 'Test', 'test', 8);
 
 -- Listage de la structure de table e-commerce. coupons
 CREATE TABLE IF NOT EXISTS `coupons` (
@@ -81,7 +82,8 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20230905083810', '2023-09-05 08:39:55', 158),
 	('DoctrineMigrations\\Version20230917113947', '2023-09-17 11:41:49', 20),
-	('DoctrineMigrations\\Version20230917121453', '2023-09-17 12:15:00', 24);
+	('DoctrineMigrations\\Version20230917121453', '2023-09-17 12:15:00', 24),
+	('DoctrineMigrations\\Version20230918135148', '2023-09-18 13:52:17', 22);
 
 -- Listage de la structure de table e-commerce. images
 CREATE TABLE IF NOT EXISTS `images` (
@@ -258,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`),
   KEY `IDX_B3BA5A5AA21214B7` (`categories_id`),
   CONSTRAINT `FK_B3BA5A5AA21214B7` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table e-commerce.products : ~10 rows (environ)
 INSERT INTO `products` (`id`, `categories_id`, `name`, `description`, `price`, `stock`, `created_at`, `slug`) VALUES
@@ -271,7 +273,8 @@ INSERT INTO `products` (`id`, `categories_id`, `name`, `description`, `price`, `
 	(17, 107, 'Sint sed.', 'Mollitia in et hic quia optio aut aliquam. Eos magni rem et commodi sit sed sed.', 51269, 8, '2023-09-17 15:12:04', 'sint-sed'),
 	(18, 106, 'Quis ratione.', 'Et quae voluptates expedita accusamus. Eligendi qui vel dolores eius. Omnis est facilis in rerum quod.', 63376, 10, '2023-09-17 15:12:04', 'quis-ratione'),
 	(19, 109, 'Perspiciatis.', 'Rem dolores earum nihil ut autem et. Aliquam non aut provident. Quia nihil sunt assumenda ipsa molestiae facilis. Omnis est ab ut id aliquam ut. Reprehenderit voluptas possimus est.', 51042, 9, '2023-09-17 15:12:04', 'perspiciatis'),
-	(20, 112, 'Nobis.', 'Dolor delectus a illum tempora. Ut debitis atque nemo aut recusandae omnis sed. Repudiandae repellat maxime excepturi est ex.', 133242, 2, '2023-09-17 15:12:04', 'nobis');
+	(20, 112, 'Nobis.', 'Dolor delectus a illum tempora. Ut debitis atque nemo aut recusandae omnis sed. Repudiandae repellat maxime excepturi est ex.', 133242, 2, '2023-09-17 15:12:04', 'nobis'),
+	(21, 107, 'sint sed 2.', 'Et quae voluptates expedita accusamus. Eligendi qui vel dolores eius. Omnis est facilis in rerum quod.', 65158, 5, '2023-09-18 16:44:51', 'sint-sed-2');
 
 -- Listage de la structure de table e-commerce. users
 CREATE TABLE IF NOT EXISTS `users` (
