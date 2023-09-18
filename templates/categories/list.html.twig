@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Details de {{ product.name }}{% endblock %}
+{% block title %}Liste des {{ category.name }}{% endblock %}
 
 {% block body %}
 
 <main class="container">
     <section class="row">
         <div class="col-12">
-            <h1>Caractéristique de  {{ product.name }}</h1>
+            <h1>Liste des produits dans {{ category.name }}</h1>
         </div>
             <div class="card mb-5">
-                <h3 class="card-header"> {{ product.name }}</h3>
+                <h3 class="card-header"> {{ category.name }}</h3>
                 <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 </div>
@@ -23,14 +23,15 @@
                 {# <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ category.name }}</li>
                 </ul> #}
-                    {% for product in category.products %}
+                    {% for product in products %}
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"> {{ product.name }}</li>
                         <li class="list-group-item"> {{ product.description }}</li>
                     </ul>
-                    {# <div class="card-body">
+                    <div class="card-body">
                         <a href="#" class="card-link">Voir les produits</a>
-                    </div> #}
+                        {# <a href="{{ path('product_details', { slug: product.slug } ) }}" class="card-link">Voir les détails</a> #}
+                        </div>
                     {% endfor %}
                 {# <div class="card-body">
                 <a href="#" class="card-link">Voir les produits</a>
@@ -39,5 +40,5 @@
     </section>
 
 </main>
-
+ 
 {% endblock %}

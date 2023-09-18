@@ -22,6 +22,9 @@ class Categories
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
+    #[ORM\Column(type: 'integer', length: 100)]
+    private ?string $categoryOrder = null;
+
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
     //Pour la suppression en cascade
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
@@ -64,6 +67,18 @@ class Categories
     public function setParent(?self $parent): static
     {
         $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function getCategoryOrder(): ?int
+    {
+        return $this->categoryOrder;
+    }
+
+    public function setCategoryOrder(int $categoryOrder): self
+    {
+        $this->categoryOrder = $categoryOrder;
 
         return $this;
     }

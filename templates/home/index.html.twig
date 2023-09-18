@@ -1,9 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page d'accueil{% endblock %}
+{% block title %}Liste des categories{% endblock %}
 
 {% block body %}
 
-<p>HomePage</p>
+<main class="container">
+    <section class="row">
+        <div class="col-12">
+            <h1>Site E-commerce</h1>
+            <p>Bienvenue</p>
+        </div>
+
+        {# {% for category in categories %}
+        <div class="col-12">
+            {% if category.parent= = null %}
+            <div class="col-12">
+                <h2>{{ category.name }}</h2>
+            </div> 
+            {% endif %}
+            {{ category.name }}
+        </div>
+            {% else %}
+                <div class="col-3">
+                    <a href="#">{{ category.name }}</a>
+                </div>
+            {% endif %}
+        {% endfor %}  #}
+            {% for category in categories %}
+            <div class="card mb-5">
+                {% if category.parent == null %}
+                <h3 class="card-header"> {{ category.name }}</h3>
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                {# <h6 class="card-subtitle text-muted">Support card subtitle</h6> #}
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                <rect width="100%" height="100%" fill="#868e96"></rect>
+                <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                </svg>
+                <div class="card-body">
+                {# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> #}
+                </div>
+                {% else %}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ category.name }}</li>
+                    </ul>
+                
+                <div class="card-body">
+                <a href="{{ path('categories_list', { slug: category.slug } ) }}" class="card-link">Voir les produits</a>
+                {# <a href="#" class="card-link">Another link</a> #}
+                </div>
+                {% endif %}
+            </div>
+            {# {% endif %} #}
+            {# {% else %}
+
+            {% endif %} #}
+            {% endfor %}
+    </section>
+
+</main>
 
 {% endblock %}
