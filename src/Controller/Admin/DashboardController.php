@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Categories;
 use App\Entity\Products;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,5 +31,6 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Les produits', 'fas fa-list', Products::class);
+        yield MenuItem::linkToCrud('Les categories', 'fas fa-list', Categories::class);
     }
 }
