@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des categories{% endblock %}
+{% block title %}La boutique Douceur de lune{% endblock %}
 
 {% block body %}
 
@@ -8,7 +8,7 @@
     <section class="row">
         <div class="col-12">
             <h1 class="main-title">Bievenue sur Douceur de lune la boutique !</h1>
-            <p>Voici nos produits</p>
+            {# <p>Voici nos produits</p> #}
         </div>
             {% for category in categories %}
             <div class="card mb-5">
@@ -25,11 +25,11 @@
                 </div>
                 {% else %}
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Nos {{ category.name }} !</li>
+                        <li class="list-group-item list-title">Nos {{ category.name }} !</li>
                     </ul>
                 
                 <div class="card-body">
-                <a href="{{ path('categories_list', { slug: category.slug } ) }}" class="card-link">Voir les produits</a>
+                <a href="{{ path('categories_list', { slug: category.slug } ) }}" class="card-link">Voir notre gamme {{category.name}}</a>
                 {# <a href="#" class="card-link">Another link</a> #}
                 </div>
                 {% endif %}

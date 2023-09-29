@@ -1,4 +1,10 @@
+main {
+    min-height: 950px;
+}
 
+body {
+    background-color: rgb(251, 244, 255);
+}
 
 .p-3 {
     background-color: rgba(0, 0, 0, 0.2);
@@ -8,9 +14,20 @@
     background-color: rgb(24, 24, 24);
 }
 
+.card {
+    background-color: rgb(252, 248, 254);
+}
+
+.list-group-item {
+    background-color: rgb(252, 248, 254);
+    font-weight: 600;
+}
+
 .fixed-bottom {
     background-color: rgb(24, 24, 24);
-    position: static;
+    /* position: fixed; */
+    margin: 0;
+    position: relative !important;
 }
 
 .navbar {
@@ -18,34 +35,50 @@
 }
 
 .navbar-nav {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .navbar-brand {
-    margin-bottom: 3px;
+    margin-bottom: -5px;
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: rgb(58, 58, 58);
+    font-family: 'La Belle Aurore', cursive;
 }
 
 .navbar-expand-lg .navbar-nav {
     flex-direction: row;
     margin: 0 auto;
     gap: 50px;
-    padding-left: 300px;
+    padding-left: 100px;
   }
 
 .navbar li a {
     font-weight: 600;
+    font-family: 'Barlow', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+    font-family: 'Barlow', sans-serif;
 }
 
 .card-header {
     background-color: rgb(245, 239, 255);
+    color: rgb(104, 66, 165);
 }
 
 .main-title {
     margin-top: 50px;
+    margin-bottom: 50px;
     color: rgb(104, 66, 165);
     font-weight: 600;
+}
+
+.list-title {
+    color: rgb(104, 66, 165);
+}
+
+.last-margin {
+    margin: 20px 0;
 }
 

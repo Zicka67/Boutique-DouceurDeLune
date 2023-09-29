@@ -7033,7 +7033,7 @@ textarea.form-control-lg {
 }
 
 .fixed-bottom {
-  position: fixed;
+  /* position: fixed; */
   left: 0;
   bottom: 0;
   right: 0;
