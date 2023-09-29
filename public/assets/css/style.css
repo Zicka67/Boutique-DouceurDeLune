@@ -1,3 +1,5 @@
+
+
 .p-3 {
     background-color: rgba(0, 0, 0, 0.2);
 }
@@ -39,5 +41,11 @@
 
 .card-header {
     background-color: rgb(245, 239, 255);
+}
+
+.main-title {
+    margin-top: 50px;
+    color: rgb(104, 66, 165);
+    font-weight: 600;
 }
 
