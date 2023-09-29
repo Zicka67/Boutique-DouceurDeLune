@@ -20,8 +20,8 @@
                 </svg>
                 <li class="list-group-item list-title last-margin"> {{ product.name }}</li>
                 <li class="list-group-item"> {{ product.description }}</li>
-                <li class="list-group-item"> {{ product.stock }}</li>
-                <li class="list-group-item"> {{ (product.price / 100)|number_format(2, '.', '') }}€ </li>
+                <li class="list-group-item"> En stock : {{ product.stock }}</li>
+                <li class="list-group-item"> Prix : {{ (product.price / 100)|number_format(2, ',', '') }}€ </li>
                 <div class="card-body">
                 </div>
             

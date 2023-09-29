@@ -11,17 +11,17 @@
             <a class="nav-link" aria-current="page" href="{{ path('home') }}">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Qui suis-je ?</a>
+            <a class="nav-link" aria-current="page" href="http://localhost:8001/mon-parcours">Qui suis-je ?</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Mes cours
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Portage</a></li>
-              <li><a class="dropdown-item" href="#">Allaitement</a></li>
-              <li><a class="dropdown-item" href="#">Rituel rebozo</a></li>
-              <li><a class="dropdown-item" href="#">Cercle des mamans</a></li>
+              <li><a class="dropdown-item" href="https://localhost:8001/cours/atelier-de-portage">Portage</a></li>
+              <li><a class="dropdown-item" href="https://localhost:8001/cours/consultation-d-allaitement">Allaitement</a></li>
+              <li><a class="dropdown-item" href="https://localhost:8001/cours/rituel-rebozo">Rituel rebozo</a></li>
+              <li><a class="dropdown-item" href="https://localhost:8001/cours/cercle-mamans-bebes">Cercle des mamans</a></li>
               {# <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Quotidien</a></li> #}
             </ul>
@@ -32,7 +32,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ path('admin') }}" target="_blank">Admin</a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8001">Nos cours</a>
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {% if app.user %}
