@@ -11,3 +11,33 @@
     position: static;
 }
 
+.navbar {
+    background-color: rgb(217, 194, 255) !important;
+}
+
+.navbar-nav {
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+    margin-bottom: 3px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: rgb(58, 58, 58);
+}
+
+.navbar-expand-lg .navbar-nav {
+    flex-direction: row;
+    margin: 0 auto;
+    gap: 50px;
+    padding-left: 300px;
+  }
+
+.navbar li a {
+    font-weight: 600;
+}
+
+.card-header {
+    background-color: rgb(245, 239, 255);
+}
+
