@@ -29,7 +29,9 @@
                     </ul>
                 
                 <div class="card-body">
-                <a href="{{ path('categories_list', { slug: category.slug } ) }}" class="card-link">Voir notre gamme {{category.name}}</a>
+                    <button type="button" class="btn btn-primary">
+                        <a href="{{ path('categories_list', { slug: category.slug } ) }}" class="card-link">{{category.name}}</a>
+                    </button>
                 {# <a href="#" class="card-link">Another link</a> #}
                 </div>
                 {% endif %}

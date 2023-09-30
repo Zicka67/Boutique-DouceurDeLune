@@ -32,6 +32,9 @@ body {
 
 .navbar {
     background-color: rgb(217, 194, 255) !important;
+    position: fixed;
+  z-index: 1000;
+  width: 100%;
 }
 
 .navbar-nav {
@@ -58,6 +61,10 @@ body {
     font-family: 'Barlow', sans-serif;
 }
 
+.navbar li a:hover {
+    color: rgb(65, 28, 126);
+}
+
 h1, h2, h3, h4, h5, h6, p, a {
     font-family: 'Barlow', sans-serif;
 }
@@ -82,3 +89,21 @@ h1, h2, h3, h4, h5, h6, p, a {
     margin: 20px 0;
 }
 
+.card-link{
+    color: inherit; 
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: rgb(104, 66, 165);
+  border-color: rgb(104, 66, 165);
+}
+
+.btn-primary:hover {
+    background-color: rgb(65, 28, 126);
+  border-color: rgb(65, 28, 126);
+}
+
+.container {
+    padding-top: 100px;
+}
