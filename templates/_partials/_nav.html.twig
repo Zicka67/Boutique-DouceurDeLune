@@ -16,20 +16,14 @@
               <li><a class="dropdown-item" href="http://localhost:8000/cours/consultation-d-allaitement">Allaitement</a></li>
               <li><a class="dropdown-item" href="http://localhost:8000/cours/rituel-rebozo">Rituel rebozo</a></li>
               <li><a class="dropdown-item" href="http://localhost:8000/cours/cercle-mamans-bebes">Cercle des mamans</a></li>
-              {# <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Quotidien</a></li> #}
+              {# <li><hr class="dropdown-divider"></li> #}
             </ul>
           </li>
-          {# <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ path('home') }}">Accueil</a>
-          </li> #}
+
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="http://localhost:8000/mon-parcours">Qui suis-je ?</a>
           </li>
           
-          {# <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li> #}
           <li class="nav-item">
             <a class="nav-link" href="{{ path('admin') }}" target="_blank">Admin</a>
           </li>
@@ -40,7 +34,7 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {% if app.user %}
               <li class="nav-item">
-                  <a class="nav-link" href="#">Mon compte</a>
+                <a class="nav-link" href="{{ path('profil_index') }}">Mon compte</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link text-danger" href="{{ path('app_logout') }}">Me déconnecter</a>
@@ -55,7 +49,6 @@
           {% endif %}
       </ul>
       
-         
         </ul>
       </div>
     </div>

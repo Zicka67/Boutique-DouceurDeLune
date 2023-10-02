@@ -1,9 +1,10 @@
 main {
-    min-height: 950px;
+    min-height: 950px !important;
 }
 
 body {
     background-color: rgb(251, 244, 255);
+    min-height: 950px !important;
 }
 
 .p-3 {
@@ -28,6 +29,7 @@ body {
     /* position: fixed; */
     margin: 0;
     position: relative !important;
+    /* margin-bottom: 35px; */
 }
 
 .navbar {
@@ -107,3 +109,52 @@ h1, h2, h3, h4, h5, h6, p, a {
 .container {
     padding-top: 100px;
 }
+
+.table-hover {
+    width: 80%;
+    margin: 150px auto;
+}
+
+
+.table-responsive h1 {
+    margin-top: 150px !important;
+    display: flex;
+    justify-content: center;
+    color: rgb(104, 66, 165);
+}
+
+.dropdown-menu li {
+    margin: 10px 10px;
+    font-size: 1.2rem;
+}
+
+.table-spacing tbody {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.table-spacing tbody tr {
+    border-bottom: 20px solid rgb(251, 244, 255);
+    padding: 10px 0;
+}
+
+.table-spacing tbody tr:hover {
+    background-color: rgb(245, 239, 255) !important;
+}
+
+.table-spacing tbody th {
+    padding: 20px 10px;
+    color: rgb(104, 66, 165);
+}
+
+
+
+.table-spacing tbody td {
+    background-color: white; 
+    display: flex;
+  justify-content: center;
+  padding: 20px 10px;
+}
+
+
+

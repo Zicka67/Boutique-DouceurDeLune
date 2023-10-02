@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+
+<div class="table-responsive">
+ 
+    <table class="table table-hover table-spacing">
+        <h1>Profil de {{ user.firstname }}</h1>
+        <tbody>
+            <tr>
+                <th scope="row">Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Nom</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Prénom</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Adresse</th>
+                <td>{{ user.address }}, {{ user.zipcode }}, {{ user.city }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
