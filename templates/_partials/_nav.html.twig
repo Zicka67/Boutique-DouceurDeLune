@@ -23,12 +23,21 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="http://localhost:8000/mon-parcours">Qui suis-je ?</a>
           </li>
-          
           <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin') }}" target="_blank">Admin</a>
+            <a class="nav-link" href="{{ path('categories_list', {'slug': 'portage'}) }}">Portage</a>
           </li>
           <li class="nav-item">
+            <a  class="nav-link"href="{{ path('categories_list', {'slug': 'Accessoires'}) }}">Accessoires</a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link"href="{{ path('categories_list', {'slug': 'carte-cadeau'}) }}">Cartes cadeaux</a>
+          </li>
+          
+          <li class="nav-item">
             <a class="nav-link" href="http://localhost:8000">Nos cours</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin') }}" target="_blank">Admin</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

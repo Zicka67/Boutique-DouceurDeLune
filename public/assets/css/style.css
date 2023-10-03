@@ -1,10 +1,26 @@
+:root {
+    --primary-color: rgb(225, 164, 98);
+    --secondary-color: rgb(253, 238, 220);
+    --tertiary-color: #f5f5f5;
+    --text-color: rgba(0, 0, 0, 0.2);
+    --title-color: rgb(58, 58, 58);
+    --quaternary-color: rgb(194, 128, 45);
+    --quinternary-color: #ffe6df;
+    --peach-color: #ffcccb;
+    
+}
+
+
 main {
     min-height: 950px !important;
+    position: relative;
+    z-index: 2;
 }
 
 body {
-    background-color: rgb(251, 244, 255);
+    background-color: rgb(253, 238, 220);
     min-height: 950px !important;
+    position: relative;
 }
 
 .p-3 {
@@ -16,31 +32,35 @@ body {
 }
 
 .card {
-    background-color: rgb(252, 248, 254);
+    /* background-color: rgb(252, 248, 254); */
+    padding: 10px !important;
 }
 
 .list-group-item {
-    background-color: rgb(252, 248, 254);
+    /* background-color: rgb(252, 248, 254); */
     font-weight: 600;
+    margin: 5px 0 !important;
 }
 
 .fixed-bottom {
     background-color: rgb(24, 24, 24);
-    /* position: fixed; */
-    margin: 0;
-    position: relative !important;
-    /* margin-bottom: 35px; */
+    margin-top: 50px;
+    position: absolute;
+    bottom: -5px !important;
 }
 
 .navbar {
-    background-color: rgb(217, 194, 255) !important;
+    /* background-color: rgb(217, 194, 255) !important; */
+    background-color: transparent !important;
     position: fixed;
-  z-index: 1000;
-  width: 100%;
+    z-index: 1000;
+    width: 100%;
+    backdrop-filter: sepia(30%);
+    margin-top: -5px;
 }
 
 .navbar-nav {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .navbar-brand {
@@ -49,12 +69,13 @@ body {
     font-size: 2rem;
     color: rgb(58, 58, 58);
     font-family: 'La Belle Aurore', cursive;
+    margin-right: 0;
 }
 
 .navbar-expand-lg .navbar-nav {
     flex-direction: row;
     margin: 0 auto;
-    gap: 50px;
+    gap: 30px;
     padding-left: 100px;
   }
 
@@ -64,7 +85,7 @@ body {
 }
 
 .navbar li a:hover {
-    color: rgb(65, 28, 126);
+    color: rgb(225, 164, 98);
 }
 
 h1, h2, h3, h4, h5, h6, p, a {
@@ -72,19 +93,20 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 .card-header {
-    background-color: rgb(245, 239, 255);
-    color: rgb(104, 66, 165);
+    background-color: #ffe6df;
+    color: rgb(225, 164, 98);
 }
 
 .main-title {
     margin-top: 50px;
     margin-bottom: 50px;
-    color: rgb(104, 66, 165);
+    color: rgb(194, 128, 45);
     font-weight: 600;
 }
 
 .list-title {
-    color: rgb(104, 66, 165);
+    color: rgb(225, 164, 98);
+    font-size: 1.2rem;
 }
 
 .last-margin {
@@ -96,18 +118,33 @@ h1, h2, h3, h4, h5, h6, p, a {
     text-decoration: none;
 }
 
+.btn {
+    margin-left: -15px;
+}
+
 .btn-primary {
-    background-color: rgb(104, 66, 165);
-  border-color: rgb(104, 66, 165);
+    background-color: rgb(225, 164, 98);
+    border-color: rgb(225, 164, 98);
+    font-weight: 500;
 }
 
 .btn-primary:hover {
-    background-color: rgb(65, 28, 126);
-  border-color: rgb(65, 28, 126);
+    background-color: rgb(197, 131, 61);
+    border-color: rgb(197, 131, 61);
 }
 
 .container {
     padding-top: 100px;
+}
+
+.container-sub {
+    padding-top: 100px;
+    width: 30% !important;
+    margin: 0 auto;
+}
+
+.my-3 {
+    margin-left: 0px;
 }
 
 .table-hover {
@@ -120,7 +157,7 @@ h1, h2, h3, h4, h5, h6, p, a {
     margin-top: 150px !important;
     display: flex;
     justify-content: center;
-    color: rgb(104, 66, 165);
+    color: rgb(225, 164, 98);
 }
 
 .dropdown-menu li {
@@ -134,27 +171,86 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 .table-spacing tbody tr {
-    border-bottom: 20px solid rgb(251, 244, 255);
+    border-bottom: 20px solid rgb(255, 251, 244) !important;
     padding: 10px 0;
 }
 
 .table-spacing tbody tr:hover {
-    background-color: rgb(245, 239, 255) !important;
+    background-color: rgb(255, 251, 244) !important;
 }
 
 .table-spacing tbody th {
     padding: 20px 10px;
-    color: rgb(104, 66, 165);
+    color: rgb(225, 164, 98);
 }
-
-
 
 .table-spacing tbody td {
     background-color: white; 
     display: flex;
-  justify-content: center;
-  padding: 20px 10px;
+    justify-content: center;
+    padding: 20px 10px;
 }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; 
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    z-index: 1;
+    background-image: url('/img/fond-aquarelle-rose-peint-main-detaille_1048-17039.webp');
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+.bottom-div {
+    width: 100%;
+    height: 300px;
+    background-color: #ffcccb; 
+    margin-top: 5px;
+}
+
+.full-background {
+    background-image: url('/img/fond-aquarelle-rose-peint-main-detaille_1048-17039.webp');
+    /* background-position: center;  */
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+
+.progress-bar {
+    background-color: #f6a266;
+}
+
+span {
+    color: rgb(194, 128, 45);
+}
+
+.dropdown-item:focus, .dropdown-item li a:hover {
+    background-color: rgb(225, 164, 98);
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: transparent;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    background-color: #ffe6df;
+}
+
+.test {
+    width: 100%;
+    height: 500px;
+    background-color: #ffcccb;
+}
+
+.row {
+    padding-bottom: 50px;
+}
+
+
+
 
 
 

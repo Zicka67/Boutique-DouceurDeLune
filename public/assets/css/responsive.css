@@ -1,0 +1,28 @@
+@media (max-width: 500px) {
+
+    .navbar-brand {
+        font-size: 1.4rem;
+    }
+
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: row;
+        /* margin: 0 auto;
+          margin-right: auto;
+          margin-bottom: 0px; */
+        gap: 10px;
+        padding-left: 0px;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .navbar {
+        background-image: url('/img/fond-aquarelle-rose-peint-main-detaille_1048-17039.webp');
+        /* background-position: center;  */
+        background-repeat: no-repeat; 
+        /* background-size: cover;  */
+      }
+
+      
+   
+}
