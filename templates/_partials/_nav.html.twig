@@ -8,43 +8,49 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle hover-elem" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Mes cours
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="http://localhost:8000/cours/atelier-de-portage">Portage</a></li>
-              <li><a class="dropdown-item" href="http://localhost:8000/cours/consultation-d-allaitement">Allaitement</a></li>
-              <li><a class="dropdown-item" href="http://localhost:8000/cours/rituel-rebozo">Rituel rebozo</a></li>
-              <li><a class="dropdown-item" href="http://localhost:8000/cours/cercle-mamans-bebes">Cercle des mamans</a></li>
+              <li class="portage-color"><a class="dropdown-item" href="http://localhost:8000/cours/atelier-de-portage">Portage</a></li>
+              <li class="allaitement-color"><a class="dropdown-item" href="http://localhost:8000/cours/consultation-d-allaitement">Allaitement</a></li>
+              <li class="rebozo-color"><a class="dropdown-item" href="http://localhost:8000/cours/rituel-rebozo">Rituel rebozo</a></li>
+              <li class="cercle-color"><a class="dropdown-item" href="http://localhost:8000/cours/cercle-mamans-bebes">Cercle des mamans</a></li>
               {# <li><hr class="dropdown-divider"></li> #}
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="http://localhost:8000/mon-parcours">Qui suis-je ?</a>
+            <a class="nav-link hover-elem" aria-current="page" href="http://localhost:8000/mon-parcours">Qui suis-je ?</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ path('categories_list', {'slug': 'portage'}) }}">Portage</a>
+            <a class="nav-link hover-elem" href="{{ path('categories_list', {'slug': 'portage'}) }}">Portage</a>
           </li>
           <li class="nav-item">
-            <a  class="nav-link"href="{{ path('categories_list', {'slug': 'Accessoires'}) }}">Accessoires</a>
+            <a  class="nav-link hover-elem"href="{{ path('categories_list', {'slug': 'Accessoires'}) }}">Accessoires</a>
           </li>
           <li class="nav-item">
-            <a  class="nav-link"href="{{ path('categories_list', {'slug': 'carte-cadeau'}) }}">Cartes cadeaux</a>
+            <a  class="nav-link hover-elem"href="{{ path('categories_list', {'slug': 'carte-cadeau'}) }}">Cartes cadeaux</a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000">Nos cours</a>
+            <a class="nav-link hover-elem" href="http://localhost:8000">Nos cours</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin') }}" target="_blank">Admin</a>
+            <a class="nav-link hover-elem" href="{{ path('admin') }}" target="_blank">Admin</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('cart_index') }}"><img class="cart-logo" src="/img/cart.png" alt=""/> : 
 
+                  {# set pour afficher le nbr de produit en panier |reduce => filtre twig #}
+
+                  {# récupère le panier depuis la session => tab #}
                   {% set panier = app.session.get('panier')|default({}) %}
+                  {# filtre reduce pour calculer le nbr total d'articles dans le panier. (par exemple, {'item1': 3, 'item2': 5}
+                  carry commence a 0, item = chaque valeur du tableau panier à chaque itération 
+                  carry + item additionne la quantité actuelle de l'élément (item) au total courant (carry).#}
                   {% set totalItems = panier|reduce((carry, item) => carry + item, 0) %}
 
                 <span id="totalItems">
@@ -52,8 +58,6 @@
                 </span>
                 </a>
               </li>
-
-              {# Recupérer le panier en session, et length les produits#}
 
           {% if app.user %}
               <li class="nav-item">
@@ -64,13 +68,13 @@
               </li>
           {% else %}
               <li class="nav-item">
-                  <a class="nav-link" href="{{ path('app_register') }}">M'inscrire</a>
+                  <a class="nav-link hover-elem" href="{{ path('app_register') }}">M'inscrire</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link text-success" href="{{ path('app_login') }}">Me connecter</a>
               </li>
           {% endif %}
-      </ul>
+        </ul>
       
         </ul>
       </div>

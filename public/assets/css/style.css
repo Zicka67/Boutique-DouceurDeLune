@@ -7,6 +7,10 @@
     --quaternary-color: rgb(194, 128, 45);
     --quinternary-color: #ffe6df;
     --peach-color: #ffcccb;
+    --portage-color: #23a6bd;
+    --allaitement-color: #86428b;
+    --rebozo-color: #c27b2a;
+    --cercle-color: #b63c3c;;
     
 }
 
@@ -20,6 +24,38 @@ table, h1, h2, h3, h4, h5, h6, p {
     font-size: 1.2rem;
     color: red;
     margin-left: -18px;
+}
+
+.portage-color:hover {
+    background-color: #c8ecf7;
+}
+
+.portage-color:hover a{
+    color: var(--portage-color);
+}
+
+.allaitement-color:hover {
+    background-color: #fcd0ff;
+}
+
+.allaitement-color:hover a{
+    color: var(--allaitement-color);
+}
+
+.rebozo-color:hover {
+    background-color: #fee2c3;
+}
+
+.rebozo-color:hover a{
+    color: var(--rebozo-color);
+}
+
+.cercle-color:hover {
+    background-color: #ffd1d1;
+}
+
+.cercle-color:hover a{
+    color: var(--cercle-color);
 }
 
 
@@ -94,7 +130,7 @@ body {
     font-family: 'Barlow', sans-serif;
 }
 
-.navbar li a:hover {
+.hover-elem:hover {
     color: rgb(225, 164, 98);
 }
 
@@ -255,7 +291,7 @@ span {
     color: rgb(194, 128, 45);
 }
 
-.dropdown-item:focus, .dropdown-item li a:hover {
+.dropdown-item:focus, .hover-elem a:hover {
     background-color: rgb(225, 164, 98);
 }
 
@@ -264,7 +300,7 @@ span {
 }
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
-    background-color: #ffe6df;
+    background-color: #ffffff;
 }
 
 .test {
