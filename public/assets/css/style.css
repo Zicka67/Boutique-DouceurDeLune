@@ -86,7 +86,7 @@ body {
     flex-direction: row;
     margin: 0 auto;
     gap: 30px;
-    padding-left: 100px;
+    /* padding-left: 100px; */
   }
 
 .navbar li a {
@@ -275,6 +275,23 @@ span {
 
 .row {
     padding-bottom: 50px;
+}
+
+.margin-th {
+    margin-left: 10px !important;
+}
+
+.cart-logo {
+    width: 32px;
+    height: 32px;
+}
+
+.card-color {
+    background-color: rgba(253, 201, 170, 0.786);
+}
+
+.tbody, td, tfoot, th, thead, tr  {
+    background-color: rgba(253, 201, 170, 0.786) !important;
 }
 
 

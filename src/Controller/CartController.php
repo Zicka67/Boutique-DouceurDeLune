@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Repository\ProductsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,6 +11,9 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+
 
 #[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
@@ -32,42 +36,57 @@ class CartController extends AbstractController
             ];
             $total += $product->getPrice() * $quantity;
         }
-        return $this->render("cart/index.html.twig", compact('data', 'total'));
+        $totalItems = $this->calculateTotalItems($panier);
+
+        return $this->render("cart/index.html.twig", compact('data', 'total', 'totalItems'));
 
     }
+
+    private function calculateTotalItems($cart)
+    {
+        $totalItems = 0;
+        foreach ($cart as $quantity) {  
+            $totalItems += $quantity;
+        }
+        return $totalItems;
+    }
+    
 
     #[Route('/add/{id}', name: 'add')]
-    public function add(Products $product, SessionInterface $session, EntityManagerInterface $em)
+    public function add(Products $product, SessionInterface $session, EntityManagerInterface $em, Request $request)
     {
-        $id = $product->getId();
+    $id = $product->getId();
+    $panier = $session->get('panier', []);
 
-        $panier = $session->get('panier', []);
-
-        if($product->getStock() > 0) {
-
-            if(empty($panier[$id])){
-                $panier[$id] = 1;
-            }else {
-                $panier[$id] ++;
-            }
-
-            //Décrémente la quantité du produit en DB avec em, limite a 0
-            $product->setStock(max(0, $product->getStock() - 1));
-            $em->flush();
-
-            $session->set('panier', $panier);
-        
-        } else {
-            //message d'erreurs
-            $this->addFlash('warning', 'Le produit ' . $product->getName() . ' est en rupture de stock.');
+    if($product->getStock() > 0) {
+        if(!isset($panier[$id])) {
+            $panier[$id] = 0;
         }
-        
-            return $this->redirectToRoute('cart_index');
-
+        $panier[$id]++;
+    
+        // Décrémentez le stock du produit
+        $product->setStock($product->getStock() - 1);
+        $em->persist($product);  
+        $em->flush();
+    
+        // Mettez à jour le panier dans la session
+        $session->set('panier', $panier);
+    } else {
+        $this->addFlash('warning', 'Le produit ' . $product->getName() . ' est en rupture de stock.');
     }
 
+    $totalItems = $this->calculateTotalItems($session->get('panier', []));
+
+    // Si la requête est en AJAX, retourne une réponse JSON
+    if ($request->isXmlHttpRequest()) {
+        return new JsonResponse(['totalItems' => $totalItems]);
+    }
+        
+    return $this->redirectToRoute('cart_index');
+}
+
     #[Route('/remove/{id}', name: 'remove')]
-    public function remove(Products $product, SessionInterface $session, EntityManagerInterface $em)
+    public function remove(Products $product, SessionInterface $session, EntityManagerInterface $em, Request $request)
     {
         $id = $product->getId();
 
@@ -85,6 +104,13 @@ class CartController extends AbstractController
             $em->flush();
 
         $session->set('panier', $panier);
+
+        $totalItems = $this->calculateTotalItems($session->get('cart', []));
+
+        // Si la requête est en AJAX, retourne une réponse JSON
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse(['totalItems' => $totalItems]);
+        }
     
         return $this->redirectToRoute('cart_index');
 
@@ -92,7 +118,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'delete')]
-    public function delete(Products $product, SessionInterface $session)
+    public function delete(Products $product, SessionInterface $session, Request $request)
     {
         $id = $product->getId();
 
@@ -103,16 +129,30 @@ class CartController extends AbstractController
             }
 
         $session->set('panier', $panier);
+
+        $totalItems = $this->calculateTotalItems($session->get('panier', []));
+
+        // Si la requête est en AJAX, retournez une réponse JSON
+        if ($request->isXmlHttpRequest()) {
+        return new JsonResponse(['totalItems' => $totalItems]);
+    }
     
         return $this->redirectToRoute('cart_index');
         
     }
 
     #[Route('/vider', name: 'vider')]
-    public function vider(SessionInterface $session)
+    public function vider(SessionInterface $session, Request $request)
     {
     
         $session->remove('panier');
+
+        $totalItems = 0;  
+
+        // Si la requête est en AJAX, retournez une réponse JSON
+        if ($request->isXmlHttpRequest()) {
+        return new JsonResponse(['totalItems' => $totalItems]);
+    }
     
         return $this->redirectToRoute('cart_index');
         
