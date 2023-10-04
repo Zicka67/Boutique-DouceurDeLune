@@ -10,6 +10,18 @@
     
 }
 
+table, h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Barlow', sans-serif;
+}
+
+.alert {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: red;
+    margin-left: -18px;
+}
+
 
 main {
     min-height: 950px !important;
@@ -32,12 +44,10 @@ body {
 }
 
 .card {
-    /* background-color: rgb(252, 248, 254); */
     padding: 10px !important;
 }
 
 .list-group-item {
-    /* background-color: rgb(252, 248, 254); */
     font-weight: 600;
     margin: 5px 0 !important;
 }
@@ -50,13 +60,13 @@ body {
 }
 
 .navbar {
-    /* background-color: rgb(217, 194, 255) !important; */
-    background-color: transparent !important;
+    background-color: rgba(255, 228, 208, 0.2) !important;
     position: fixed;
     z-index: 1000;
     width: 100%;
-    backdrop-filter: sepia(30%);
+    backdrop-filter: blur(8px);
     margin-top: -5px;
+
 }
 
 .navbar-nav {
@@ -122,6 +132,10 @@ h1, h2, h3, h4, h5, h6, p, a {
     margin-left: -15px;
 }
 
+.bis {
+    margin-left: 10px;
+}
+
 .btn-primary {
     background-color: rgb(225, 164, 98);
     border-color: rgb(225, 164, 98);
@@ -131,6 +145,15 @@ h1, h2, h3, h4, h5, h6, p, a {
 .btn-primary:hover {
     background-color: rgb(197, 131, 61);
     border-color: rgb(197, 131, 61);
+}
+
+.btn-vider {
+    margin-left: 105px !important;
+    padding: 5px 30px;
+}
+
+.action a{
+    margin-left: 10px;
 }
 
 .container {
@@ -189,6 +212,11 @@ h1, h2, h3, h4, h5, h6, p, a {
     display: flex;
     justify-content: center;
     padding: 20px 10px;
+}
+
+.table-font {
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .overlay {

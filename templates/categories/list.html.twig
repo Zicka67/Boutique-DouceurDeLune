@@ -30,10 +30,11 @@
                         <li class="list-group-item"> {{ product.description|raw }}</li>
                     </ul>
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary">
-                            <a href="{{ path('products_details', { slug: product.slug }) }}" class="card-link">Voir le produit</a>
-                        </button>
+                        <a href="{{ path('products_details', { slug: product.slug }) }}" class="btn btn-primary">
+                            Voir le produit
+                        </a>
                     </div>
+
                     {% endfor %} 
                 {# <div class="card-body">
                 <a href="#" class="card-link">Voir les produits</a>
