@@ -5,6 +5,8 @@
 {% block body %}
 
 <div class="full-background">
+    <div class="content-wrapper">
+        <div class="left-block">
 
     <main class="container">
     {% for label, messages in app.flashes %}
@@ -16,55 +18,65 @@
     {% endfor %}
         <section class="row">
             <div class="col-12">
-                <h1 class="main-title">Produits dans le panier </h1>
+                <h1 class="main-title title-cart">Panier de {{ app.user.firstname }} </h1>
             </div>
                 <div class="card mb-5 card-color">
 
-                    <table class="table table-font">
-                        <thead>
-                            <th>Produit</th>
-                            <th>Prix</th>
-                            <th>Quantité</th>
-                            <th>Total</th>
-                            <th class="margin-th">Action</th>
-                        </thead>
-                        <tbody>
+                            <div class="cards-container">
                             {% for element in data %}
-                                <tr>
-                                    <td>{{ element.product.name }}</td>
-                                    <td>{{ element.product.price / 100 }} €</td>
-                                    <td>{{ element.quantity}}</td>
-                                    <td>{{ element.quantity * element.product.price / 100 }} €</td>
-                                    <td class="action">
-                                        <a href="{{ path ("cart_add", { id: element.product.id }) }}" class="btn btn-success">+</a>
-                                        <a href="{{ path ("cart_remove", { id: element.product.id }) }}" class="btn btn-warning">-</a>
-                                        <a href="{{ path ("cart_delete", { id: element.product.id }) }}" class="btn btn-danger">Supprimer</a>
-                                    </td>
-                                </tr>
+                            <div class="card card-shadow">
+                                <img src="{{ asset('img/' ~ element.product.imgName) }}" alt="{{ element.product.name }}" class="card-image">
+                                <div class="card-body2">
+                                    <h2 class="card-title">{{ element.product.name }}</h2>
+                                    <p class="card-price">{{ element.product.price / 100 }} €</p>
+                                    <p class="card-quantity">
+                                        Quantité : {{ element.quantity }} &nbsp;
+                                        <a href="{{ path("cart_add", { id: element.product.id }) }}" class="btn btn-success">+</a>
+                                        <a href="{{ path("cart_remove", { id: element.product.id }) }}" class="btn btn-warning">-</a>
+                                       
+                                    </p>
+                                    <p class="card-subtotal"> En stock : {{ element.product.stock }}</p>
+                                    <p class="card-subtotal">{{ element.quantity * element.product.price / 100 }} €</p>
+                                    <a href="{{ path("cart_delete", { id: element.product.id }) }}" class="btn btn-danger">Supprimer</a>
+                                </div>
+                                </div>
                             {% else %}
-                            <tr>
-                                <td colspan="5">Votre panier est vide</td>
-                            </tr>
+                                <p>Votre panier est vide.</p>
                             {% endfor %}
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="1">Total</td>
-                                <td colspan="1">Total</td>
-                                <td>Article(s) : {{ totalItems is defined ? totalItems : 0 }}</td>
-                                <td>{{ total / 100 }} €</td>
-                                <td> 
-                                    <a href="{{ path ("cart_vider") }}" class="btn btn-danger btn-vider">Vider</a>
-                                </td>
-                            </tr>                        
-                        </tfoot>
-                    </table>
+                        </div>
+                                               
                 </div>
 
         </section>
+ 
+    </main>   
+    </div>
 
-    </main>
+        <div class="right-block">
+            <div class="card summary-card">
+                <div class="card-body">
+                    <h2 class="card-title">Récapitulatif</h2>
+                    <p class="card-info">Total : {{ totalItems is defined ? totalItems : 0 }} article(s)</p>
+                    <p class="card-info">Prix total : {{ total / 100 }} €</p>
+                    <a href="{{ path("cart_vider") }}" class=""><img src="/img/delete.png" alt=""></a>
+                </div>
+            </div>
 
- </div>
+            <div class="card summary-card">
+                <div class="card-body">                  
+                    <div class="coupon-code">
+                        <input type="text" class="input-code" placeholder="Code promo" />
+                        <button class="btn btn-success">Valider</button>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+ 
 
 {% endblock %}

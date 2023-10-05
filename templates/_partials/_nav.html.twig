@@ -36,10 +36,12 @@
           <li class="nav-item">
             <a class="nav-link hover-elem" href="http://localhost:8000">Nos cours</a>
           </li>
+          {% if is_granted('ROLE_ADMIN') %}
           <li class="nav-item">
             <a class="nav-link hover-elem" href="{{ path('admin') }}" target="_blank">Admin</a>
           </li>
-        </ul>
+          {% endif %}
+        </ul> 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('cart_index') }}"><img class="cart-logo" src="/img/cart.png" alt=""/> : 

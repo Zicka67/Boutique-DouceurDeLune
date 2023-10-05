@@ -2,47 +2,71 @@
 
 {% block title %}Details de {{ product.name }}{% endblock %}
 
+{# {% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/script.js') }}"></script>
+{% endblock %} #}
+
 {% block body %}
 
-<div class="full-background">
+<main class="container">
+    <section class="row">
+        <div class="col-12">
+            <h1 class="main-title">Caractéristique de  {{ product.name }}</h1>
+        </div>
 
-    <main class="container">
-        <section class="row">
-            <div class="col-12">
-                <h1 class="main-title">Caractéristique de  {{ product.name }}</h1>
+            <div class="card mb-5">
+                <h3 class="card-header"> {{ product.name }}</h3>
+                <div class="card-body">
+                </div>
+                <svg xmlns="#" class="d-block user-select-none" width="100%" height="350" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">                
+                    <image href="{{ asset('img/' ~ product.imgName) }}" x="0" y="-100" width="318" height="350"></image>
+                </svg>
+                
+                <li class="list-group-item list-title last-margin"> {{ product.name }}</li>
+                <li class="list-group-item"> {{ product.description }}</li>
+                <li class="list-group-item"> En stock : {{ product.stock }}</li>
+                <li class="list-group-item"> Prix : {{ (product.price / 100)|number_format(2, ',', '') }}€ </li>
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary">
+                        <a href="https://buy.stripe.com/test_9AQ8yCa4zgzidlC7sx" class="card-link">Acheter</a>
+                    </button>
+                    <a href="{{ path('cart_add', {id: product.id}) }}" class="btn btn-primary bis">
+                        Ajouter
+                    </a>
+                    <button class="add-to-cart-button" data-product-id="{{ product.id }}">Add to cart</button>
+
+                </div>
             </div>
 
-                <div class="card mb-5">
-                    <h3 class="card-header"> {{ product.name }}</h3>
-                    <div class="card-body">
+    </section>
 
-                    </div>
-                    <svg xmlns="#" class="d-block user-select-none" width="100%" height="300" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">                
-                        <image href="{{ asset('img/' ~ product.slug ~ '.webp') }}" x="0" y="-10" width="318" height="250"></image>
-                    </svg>
-                    <li class="list-group-item list-title last-margin"> {{ product.name }}</li>
-                    <li class="list-group-item"> Tous nos produits sont fait dans des matériaux Français et respecte la peau de bébé et celle du porteur ! </li>
-                    <hr class="separator">
-                    <li class="list-group-item"> En stock : {{ product.stock }}</li>
-                    <hr class="separator">
-                    <li class="list-group-item"> Prix : {{ (product.price / 100)|number_format(2, ',', '') }} <span>€</span></li>
-                    <div class="card-body">
-                       <div class="button-group">
-                            <a href="https://buy.stripe.com/test_9AQ8yCa4zgzidlC7sx" class="btn btn-primary">
-                                Acheter
-                            </a>
-                            <a href="{{ path('cart_add', {id: product.id}) }}" class="btn btn-primary bis">
-                                Ajouter
-                            </a>
-                        </div>
+</main>
 
-                    </div>
-                </div>
+ <script src="{{ asset('assets/js/script.js') }}"></script>
 
-        </section>
-
-    </main>
-
-</div>
+<script>
+    document.querySelector('.add-to-cart-button').addEventListener('click', function() {
+        const productId = this.dataset.productId;
+        addToCart(productId);
+    });
+    
+    function addToCart(productId) {
+        fetch(`https://localhost:8001/cart/add/${productId}`, {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+           
+            document.querySelector('.cart-items').textContent = data.totalItems;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
 
 {% endblock %}

@@ -12,9 +12,29 @@ function updateCart(actionUrl) {
 
     }
 
-//         Cette fonction JavaScript utilise AJAX pour obtenir le nombre total d'articles dans le
-//         panier depuis le serveur et mettre à jour l'interface utilisateur en conséquence, sans avoir besoin de recharger toute la page. 
-//         On peut appeler cette fonction chaque fois qu'un utilisateur ajoute un article au panier, en retire un, 
-//         ou effectue toute autre action qui pourrait modifier le nombre total d'articles dans le panier, afin de garder 
-//         l'interface utilisateur synchronisée avec l'état du serveur.
+
+
+
+// document.querySelector('.add-to-cart-button').addEventListener('click', function() {
+//     const productId = this.dataset.productId;
+//     addToCart(productId);
+// });
+
+// function addToCart(productId) {
+//     fetch(`https://localhost:8001/add/${productId}`, {
+//         method: 'POST',
+//         headers: {
+//             'X-Requested-With': 'XMLHttpRequest',
+//         },
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         // Update the cart in the frontend
+//         // For example, update the number of items in the cart
+//         document.querySelector('.cart-items').textContent = data.totalItems;
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//     });
+// }
 

@@ -45,6 +45,9 @@ class Products
     #[ORM\OneToMany(mappedBy: 'products', targetEntity: OrdersDetails::class)]
     private Collection $ordersDetails;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $img_name = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -173,6 +176,18 @@ class Products
                 $ordersDetail->setProducts(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImgName(): ?string
+    {
+        return $this->img_name;
+    }
+
+    public function setImgName(?string $img_name): static
+    {
+        $this->img_name = $img_name;
 
         return $this;
     }
