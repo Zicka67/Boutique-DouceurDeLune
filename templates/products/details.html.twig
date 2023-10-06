@@ -2,10 +2,10 @@
 
 {% block title %}Details de {{ product.name }}{% endblock %}
 
-{# {% block javascripts %}
+{% block stylesheets %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/script.js') }}"></script>
-{% endblock %} #}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
 
 {% block body %}
 
@@ -43,7 +43,36 @@
 
 </main>
 
- <script src="{{ asset('assets/js/script.js') }}"></script>
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset("assets/js/bootstrap/bootstrap.bundle.min.js") }}" defer></script>
+    <script>
+        $(document).ready(function() {
+            $('.add-to-cart-button').click(function() {
+                var productId = $(this).data('product-id');
+                
+                $.ajax({
+                    url: '{{ path('add_to_cart') }}',
+                    method: 'POST',
+                    data: {
+                        productId: productId
+                    },
+                    success: function(response) {
+                        alert(response.message);
+                        // Mettre à jour l'affichage du panier 
+                        // $('#cart-count').text(response.cartCount);
+                    },
+                    error: function() {
+                        alert('Une erreur est survenue lors de l\'ajout au panier.');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+
+ {# <script src="{{ asset('assets/js/script.js') }}"></script>
 
 <script>
     document.querySelector('.add-to-cart-button').addEventListener('click', function() {
@@ -52,7 +81,7 @@
     });
     
     function addToCart(productId) {
-        fetch(`https://localhost:8001/cart/add/${productId}`, {
+        fetch(`https://localhost:8000/produits/${slug}`, {
             method: 'POST',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
@@ -67,6 +96,7 @@
             console.error('Error:', error);
         });
     }
-</script>
+</script> #}
+
 
 {% endblock %}

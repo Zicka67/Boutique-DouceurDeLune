@@ -24,7 +24,7 @@
 
                             <div class="cards-container">
                             {% for element in data %}
-                            <div class="card card-shadow">
+                            <div class="card card-shadow card-background">
                                 <img src="{{ asset('img/' ~ element.product.imgName) }}" alt="{{ element.product.name }}" class="card-image">
                                 <div class="card-body2">
                                     <h2 class="card-title">{{ element.product.name }}</h2>
@@ -70,13 +70,9 @@
                     </div>
                 </div>
             </div>
-            
 
         </div>
     </div>
 </div>
-
-
- 
 
 {% endblock %}

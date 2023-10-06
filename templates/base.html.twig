@@ -16,16 +16,14 @@
         
         <link rel="stylesheet" href="{{ asset("assets/css/bootstrap/bootstrap.min.css") }}">
         
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
         {# A mettre après pour overwrite le style de la balise Stylsheet avec le CSS custom #}
         <link rel="stylesheet" href="{{ asset("assets/css/style.css") }}">
         <link rel="stylesheet" href="{{ asset("assets/css/responsive.css") }}">
-
+        {% endblock %}
         
-        <script src="{{ asset("assets/js/bootstrap/bootstrap.bundle.min.js") }}" defer> </script>
-        {% block javascripts %}{% endblock %}
-        <script src="{{ asset("assets/js/script.js") }}" defer> </script>
-
+        
+       
     </head>
 
 
@@ -38,6 +36,9 @@
 
         {% include "_partials/_footer.html.twig" %}
 
+        {% block javascripts %}
+            <script src="{{ asset("assets/js/bootstrap/bootstrap.bundle.min.js") }}" defer> </script>
+        {% endblock %}
     </body>
 
 </html>

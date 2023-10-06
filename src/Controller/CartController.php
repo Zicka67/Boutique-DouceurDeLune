@@ -76,7 +76,6 @@ class CartController extends AbstractController
     }
 
     $totalItems = $this->calculateTotalItems($session->get('panier', []));
-
     // Si la requête est en AJAX, retourne une réponse JSON
     if ($request->isXmlHttpRequest()) {
         return new JsonResponse(['totalItems' => $totalItems]);
@@ -158,4 +157,47 @@ class CartController extends AbstractController
         
     }
 
+
+#[Route("/add-to-cart", name: "add_to_cart", methods:["POST"])]
+public function addToCart(Request $request, SessionInterface $session, ProductsRepository $productsRepository)
+{
+    $productId = $request->request->get('productId');
+
+    // Validation du produit
+    if (!is_numeric($productId) || $productId <= 0) {
+        return new JsonResponse([
+            'message' => 'Produit invalide.',
+        ], JsonResponse::HTTP_BAD_REQUEST);
+    }
+
+    try {
+        $cart = $session->get('panier', []);
+
+        // Recherche du produit dans la base de données
+        $product = $productsRepository->find($productId);
+        if (!$product) {
+            return new JsonResponse([
+                'message' => 'Produit non trouvé.',
+            ], JsonResponse::HTTP_NOT_FOUND);
+        }
+
+        // Ajout du produit au panier
+        if (!isset($cart[$productId])) {
+            $cart[$productId] = 0;
+        }
+        $cart[$productId]++;
+
+        $session->set('panier', $cart);
+        // Réponse avec le nombre d'articles dans le panier et un message
+        return new JsonResponse([
+            'message' => 'Le produit a été ajouté au panier.',
+            'cartCount' => array_sum($cart) // Total des produits dans le panier
+        ]);
+    } catch (\Exception $e) {
+        // Gestion des exceptions
+        return new JsonResponse([
+            'message' => 'Une erreur est survenue lors de l\'ajout du produit au panier.',
+        ], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+    }
+}
 }
