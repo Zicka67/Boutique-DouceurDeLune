@@ -17,12 +17,14 @@
         {% endfor %}
     {% endfor %}
         <section class="row">
+
             <div class="col-12">
                 <h1 class="main-title title-cart">Panier de {{ app.user.firstname }} </h1>
             </div>
+
                 <div class="card mb-5 card-color">
 
-                            <div class="cards-container">
+                        <div class="cards-container">
                             {% for element in data %}
                             <div class="card card-shadow card-background">
                                 <img src="{{ asset('img/' ~ element.product.imgName) }}" alt="{{ element.product.name }}" class="card-image">
@@ -43,8 +45,8 @@
                             {% else %}
                                 <p>Votre panier est vide.</p>
                             {% endfor %}
-                        </div>
-                                               
+                        </div>  
+
                 </div>
 
         </section>
@@ -55,7 +57,7 @@
         <div class="right-block">
             <div class="card summary-card">
                 <div class="card-body">
-                    <h2 class="card-title">Récapitulatif :</h2>
+                    <h2 class="card-title vold">Récapitulatif :</h2>
                     <p class="card-info">Total : <span>{{ totalItems is defined ? totalItems : 0 }}</span> article(s)</p>
                     <p class="card-info">Prix total : <span>{{ total / 100 }} €</span> </p>
                     <button class="btn btn-danger2">

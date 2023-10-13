@@ -114,7 +114,7 @@ main {
     margin-bottom: -5px;
     font-weight: 600;
     font-size: 2rem;
-    color: rgb(84, 84, 84);
+    color: rgb(81, 81, 81);
     font-family: 'La Belle Aurore', cursive;
     margin-right: 0;
 }
@@ -358,13 +358,21 @@ span {
 }
 
 .card-background {
-    background-color: white;
-    background-image: url('/img/aquarelle.png');
+    /* background-color: white; */
+    /* background-image: url('/img/aquarelle.png'); */
     background-position: bottom; 
     background-repeat: no-repeat; 
     /* background-size: cover; */
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
+.margin {
+    padding: 10px 10px;
+    /* background-color: #23a6bd; */
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
 
 .card.cart {
     margin-bottom: 20px;
@@ -498,8 +506,8 @@ span {
     gap: 20px; 
 }
 
-
 .summary-card {
+    position: relative;
     margin: 20px auto;
     border-radius: 8px;
     top: 177px;
@@ -508,6 +516,7 @@ span {
     border: solid 1px rgb(67, 67, 67);
     box-shadow: 0px 0px 9px 9px rgba(0,0,0,0.1);
     width: 418px;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .summary-card .card-body {
@@ -522,7 +531,7 @@ span {
 }
 
 .summary-card .card-title {
-    font-size: 1.2em;
+    font-size: 1.5em;
     margin-bottom: 10px;
 }
 
@@ -534,6 +543,7 @@ span {
     padding: 5px 10px;
     cursor: pointer;
 }
+
 
 .cards-container {
     display: grid;

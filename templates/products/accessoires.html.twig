@@ -23,14 +23,16 @@
                 </svg>
                 <div class="card-body">
                 </div>
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush margin">
 
                 </ul> 
                     {% for product in products %}
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item list-title"> {{ product.name }}</li>
-                        <li class="list-group-item"> {{ product.description }}</li>
-                    </ul>
+                 
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item list-title"> {{ product.name }}</li>
+                            <li class="list-group-item"> {{ product.description }}</li>
+                        </ul>
+                 
                     <div class="card-body">
                         <button type="button" class="btn btn-primary">
                             <a href="{{ path('products_details', { slug: product.slug }) }}" class="card-link">Voir le produit</a>
