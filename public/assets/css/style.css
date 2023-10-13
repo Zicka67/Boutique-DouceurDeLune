@@ -10,15 +10,18 @@
     --portage-color: #23a6bd;
     --allaitement-color: #86428b;
     --rebozo-color: #c27b2a;
-    --cercle-color: #b63c3c;;
+    --cercle-color: #b63c3c;
     
 }
 
 body {
-    background-image: url('/img/background.webp');
+    background-image: url('/img/aquarelle.png');
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
+    /* background-color: rgb(253, 238, 220); */
+    min-height: 950px !important;
+    position: relative;
 }
 
 table, h1, h2, h3, h4, h5, h6, p {
@@ -72,12 +75,6 @@ main {
     z-index: 2;
 }
 
-body {
-    background-color: rgb(253, 238, 220);
-    min-height: 950px !important;
-    position: relative;
-}
-
 .p-3 {
     background-color: rgba(0, 0, 0, 0.2);
 }
@@ -117,7 +114,7 @@ body {
     margin-bottom: -5px;
     font-weight: 600;
     font-size: 2rem;
-    color: rgb(58, 58, 58);
+    color: rgb(84, 84, 84);
     font-family: 'La Belle Aurore', cursive;
     margin-right: 0;
 }
@@ -155,11 +152,11 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 .title-cart {
     /* width: 50%; */
-    margin-left: 7.6vw;
+    margin-left: 84px;
 }
 
 .list-title {
-    color: rgb(225, 164, 98);
+    color: var(--quaternary-color);
     font-size: 1.2rem;
 }
 
@@ -301,6 +298,8 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 span {
     color: var(--quaternary-color);
+    font-weight: 600;
+    font-size: 1.5rem;
 }
 
 .dropdown-item:focus, .hover-elem a:hover {
@@ -341,13 +340,13 @@ span {
 }
 
 .card {
-    /* margin-bottom: 20px; */
     overflow: hidden;
     border: none;
     padding: 10px !important;
     border: none;
     min-width: 280px;
-    
+    background-color: transparent;
+
 }
 
 .card-shadow {
@@ -355,10 +354,15 @@ span {
     -webkit-box-shadow: 0px 0px 17px -7px rgba(82, 66, 90, 1);
     -moz-box-shadow: 0px 0px 17px -7px rgba(82, 66, 90, 1);
     box-shadow: 0px 0px 17px -7px rgba(82, 66, 90, 1);
+    border: solid 1px rgb(87, 87, 87);
 }
 
 .card-background {
     background-color: white;
+    background-image: url('/img/aquarelle.png');
+    background-position: bottom; 
+    background-repeat: no-repeat; 
+    /* background-size: cover; */
 }
 
 
@@ -371,9 +375,10 @@ span {
 }
 
 .card-image {
-    width: 260px;
+    width: 270px;
     height: 200px;
     object-fit: cover;
+    padding: 0 2px;
 }
 
 .card-body {
@@ -425,9 +430,16 @@ span {
     box-shadow: 0px 0px 37px -2px rgba(84, 85, 97, 0.5);
 }
 
+.btn-success2 {
+    padding-top: 2px;
+    margin-bottom: 8px;
+    transition: 0.3s;
+}
+
 .btn-success:hover {
-    background-color: grey;
-     border-color: grey;
+    background-color: rgb(189, 189, 189);
+    border-color: black;
+    transition: 0.3s;
 }
 
 .btn-warning {
@@ -439,17 +451,44 @@ span {
     -webkit-box-shadow: 0px 0px 37px -2px rgba(84, 85, 97, 0.5);
     -moz-box-shadow: 0px 0px 37px -2px rgba(84, 85, 97, 0.5);
     box-shadow: 0px 0px 37px -2px rgba(84, 85, 97, 0.5);
+    transition: 0.3s;
 }
 
 .btn-warning:hover {
-    background-color: grey;
-    border-color: grey;
-  
+    background-color: rgb(189, 189, 189);
+    border-color: black;
+    transition: 0.3s;
 }
 
 
 .btn-danger {
     background-color: var(--cercle-color);
+}
+
+.btn-danger:hover  {
+    background-color: rgb(105, 4, 4);
+}
+
+.btn-danger2 {
+    background-color: var(--cercle-color);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-danger2 a{
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Barlow', sans-serif;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    padding: 15px 15px;
+}
+
+.btn-danger2:hover {
+    background-color: rgb(105, 4, 4);
+    text-decoration: none;
+    transition: 0.3s;
 }
 
 .cards-container {
@@ -461,18 +500,13 @@ span {
 
 
 .summary-card {
-    /* max-width: 369px; */
     margin: 20px auto;
-    /* border: 1px solid #ddd; */
     border-radius: 8px;
     top: 177px;
-    /* right: -40px; */
     overflow: visible;
-    /* background-color: #b27eb41c; */
-    border: none;
-    -webkit-box-shadow: 0px 0px 17px -7px rgba(82, 66, 90, 1);
-    -moz-box-shadow: 0px 0px 17px -7px rgba(82, 66, 90, 1);
-    box-shadow: 0px 0px 17px -7px rgba(82, 66, 90, 1);
+    border-color: black;
+    border: solid 1px rgb(67, 67, 67);
+    box-shadow: 0px 0px 9px 9px rgba(0,0,0,0.1);
     width: 418px;
 }
 
