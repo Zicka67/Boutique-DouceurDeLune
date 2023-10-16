@@ -2,16 +2,17 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const SlideInTitle = ({ children }) => {
+    // Pour accéder à un noeud DOM ou à un élément React directement 
   const ref = useRef(null);
 
-  useEffect(() => {
+  useEffect(() => { 
     if (ref.current) {
       ref.current.style.visibility = 'visible';
     }
   }, []);
 
   return (
-    <motion.h1
+    <motion.h1  
       ref={ref}
       initial={{ opacity: 0, x: 500 }}
       animate={{ opacity: 1, x: 0 }}
