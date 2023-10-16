@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenue sur votre panier{% endblock %}
+{% block title %}Panier de {{ app.user.firstname }}{% endblock %}
 
 {% block body %}
 
@@ -19,7 +19,8 @@
         <section class="row">
 
             <div class="col-12">
-                <h1 class="main-title title-cart">Panier de {{ app.user.firstname }} </h1>
+                <h1 class="main-title margin-title-cart react-root1" style="visibility: hidden;">Panier de {{ app.user.firstname }} </h1>
+                
             </div>
 
                 <div class="card mb-5 card-color">
@@ -78,5 +79,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}

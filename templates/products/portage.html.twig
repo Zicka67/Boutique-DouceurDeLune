@@ -10,7 +10,7 @@
 
         <section class="row">
             <div class="col-12">
-                <h1 class="main-title">Liste des produits dans {{ category.name }}</h1>
+                <h1 class="main-title react-root2" style="visibility: hidden;">Liste des produits dans {{ category.name }}</h1>
             </div>
                 <div class="card mb-5">
                     <h3 class="card-header"> {{ category.name }}</h3>
@@ -37,16 +37,9 @@
                             </a>
                         </div>
                         </ul>
-                        {# <div class="card-body">
-                            <a href="{{ path('products_details', { slug: product.slug }) }}" class="btn btn-primary">
-                                Voir le produit
-                            </a>
-                        </div> #}
 
                         {% endfor %} 
-                    {# <div class="card-body">
-                    <a href="#" class="card-link">Voir les produits</a>
-                    </div> #}
+                 
                 </div>
         </section>
 

@@ -1,0 +1,28 @@
+{
+  "name": "boutique-douceurdelune",
+  "version": "1.0.0",
+  "description": "Boutique pour recréer une application et se refaire la main sur les différentes étapes du développement.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "encore dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.33.0",
+    "framer-motion": "^10.16.4",
+    "intersection-observer": "^0.12.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "@symfony/webpack-encore": "^4.4.0",
+    "webpack-notifier": "^1.15.0"
+  }
+}
