@@ -48,19 +48,20 @@
     <script src="{{ asset("assets/js/bootstrap/bootstrap.bundle.min.js") }}" defer></script>
     <script>
         $(document).ready(function() {
-            $('.add-to-cart-button').click(function() {
+            $('.add-to-cart-button').off('click').click(function() {
+                console.log('Bouton cliqué');
                 var productId = $(this).data('product-id');
                 
                 $.ajax({
-                    url: '{{ path('add_to_cart') }}',
+                    url: "{{ path('add_to_cart') }}",
                     method: 'POST',
                     data: {
                         productId: productId
                     },
                     success: function(response) {
+                        $('#totalItems').text(response.cartCount);
                         alert(response.message);
-                        // Mettre à jour l'affichage du panier 
-                        // $('#cart-count').text(response.cartCount);
+                        
                     },
                     error: function() {
                         alert('Une erreur est survenue lors de l\'ajout au panier.');
