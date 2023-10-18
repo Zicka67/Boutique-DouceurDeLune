@@ -55,7 +55,7 @@
                   carry + item additionne la quantité actuelle de l'élément (item) au total courant (carry).#}
                   {% set totalItems = panier|reduce((carry, item) => carry + item, 0) %}
 
-                <span id="totalItems">
+                <span id="totalItems" class="gold">
                     {{ totalItems }}
                 </span>
                 </a>

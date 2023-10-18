@@ -19,7 +19,7 @@
         <section class="row">
 
             <div class="col-12">
-                <h1 class="main-title margin-title-cart react-root1" style="visibility: hidden;">Panier de {{ app.user.firstname }} </h1>
+                <h1 class="main-title margin-title-cart">Panier de {{ app.user.firstname }} </h1>
                 
             </div>
 
@@ -33,7 +33,7 @@
                                     <h2 class="card-title">{{ element.product.name }}</h2>
                                     <p class="card-price">{{ element.product.price / 100 }} €</p>
                                     <p class="card-quantity">
-                                        Quantité : {{ element.quantity }} &nbsp;
+                                        Quantité : <span class="gold">{{ element.quantity }} &nbsp;</span> 
                                         <a href="{{ path("cart_add", { id: element.product.id }) }}" class="btn btn-success">+</a>
                                         <a href="{{ path("cart_remove", { id: element.product.id }) }}" class="btn btn-warning">-</a>
                                        
@@ -59,9 +59,9 @@
             <div class="card summary-card">
                 <div class="card-body">
                     <h2 class="card-title vold">Récapitulatif :</h2>
-                    <p class="card-info">Total : <span>{{ totalItems is defined ? totalItems : 0 }}</span> article(s)</p>
+                    <p class="card-info">Total : <span class="gold">{{ totalItems is defined ? totalItems : 0 }}</span> article(s)</p>
                     <p class="card-info">
-                        Prix total : <span>{{ total / 100 }} €</span> 
+                        Prix total : <span class="gold">{{ total / 100 }} €</span> 
                         {% if discount > 0 %} 
                             <span class="text-success"> ({{ discount }}% de remise)</span>
                         {% endif %}

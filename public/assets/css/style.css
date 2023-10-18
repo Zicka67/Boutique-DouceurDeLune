@@ -4,7 +4,7 @@
     --tertiary-color: #f5f5f5;
     --text-color: rgba(0, 0, 0, 0.2);
     --title-color: rgb(58, 58, 58);
-    --quaternary-color: rgb(194, 128, 45);
+    --quaternary-color: #340621;
     --quinternary-color: #ffe6df;
     --peach-color: #ffcccb;
     --portage-color: #23a6bd;
@@ -34,6 +34,10 @@ table, h1, h2, h3, h4, h5, h6, p {
     font-size: 1.2rem;
     color: red;
     margin-left: -18px;
+}
+
+.gold {
+    color: var(--primary-color);
 }
 
 .portage-color:hover {
@@ -104,6 +108,10 @@ main {
     backdrop-filter: blur(8px);
     margin-top: -5px;
 
+}
+
+.nav-link {
+    color: #340621 !important;
 }
 
 .navbar-nav {
