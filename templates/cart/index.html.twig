@@ -60,19 +60,29 @@
                 <div class="card-body">
                     <h2 class="card-title vold">Récapitulatif :</h2>
                     <p class="card-info">Total : <span>{{ totalItems is defined ? totalItems : 0 }}</span> article(s)</p>
-                    <p class="card-info">Prix total : <span>{{ total / 100 }} €</span> </p>
+                    <p class="card-info">
+                        Prix total : <span>{{ total / 100 }} €</span> 
+                        {% if discount > 0 %} 
+                            <span class="text-success"> ({{ discount }}% de remise)</span>
+                        {% endif %}
+                    </p>
+                    
                     <button class="btn btn-danger2">
                         <a href="{{ path("cart_vider") }}" class="">Vider</a>
                     </button>
+                    
                 </div>
             </div>
 
             <div class="card summary-card">
                 <div class="card-body">                  
-                    <div class="coupon-code">
-                        <input type="text" class="input-code" placeholder="Code promo" />
-                        <button class="btn btn-success btn-success2">Valider</button>
-                    </div>
+                    <form action="{{ path('cart_index') }}" method="post">
+                        <div class="coupon-code">
+                            <input type="text" name="code" class="input-code" placeholder="Code promo" />
+                            <button type="submit" class="btn btn-success btn-success2">Valider</button>
+                        </div>
+                    </form>
+                    
                 </div>
             </div>
 

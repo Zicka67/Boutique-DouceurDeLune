@@ -3,15 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Products;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Repository\CouponsRepository;
 use App\Repository\ProductsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 
@@ -19,28 +20,44 @@ use Symfony\Component\HttpFoundation\Request;
 class CartController extends AbstractController
 {
 
-    #[Route('/', name: 'index')]
-    public function index(SessionInterface $session, ProductsRepository $productsRespository)
-    {
-        $panier = $session->get('panier', []);
-        // Initialisation
-        $data = [];
-        $total = 0;
+#[Route('/', name: 'index')]
+public function index(SessionInterface $session, ProductsRepository $productsRespository, Request $request, CouponsRepository $couponsRepository)
+{
+    $panier = $session->get('panier', []);
+    // Initialisation
+    $data = [];
+    $total = 0;
 
-        foreach($panier as $id => $quantity){
-            $product = $productsRespository->find($id);
+    foreach($panier as $id => $quantity){
+        $product = $productsRespository->find($id);
 
-            $data[] = [
-                'product' => $product,
-                'quantity' => $quantity,
-            ];
-            $total += $product->getPrice() * $quantity;
-        }
-        $totalItems = $this->calculateTotalItems($panier);
-
-        return $this->render("cart/index.html.twig", compact('data', 'total', 'totalItems'));
-
+        $data[] = [
+            'product' => $product,
+            'quantity' => $quantity,
+        ];
+        $total += $product->getPrice() * $quantity;
     }
+    $totalItems = $this->calculateTotalItems($panier);
+
+    // Gestion du coupon de réduction
+    $discount = 0; 
+
+    $couponCode = $request->request->get('code');
+    $coupon = $couponsRepository->findOneBy(['code' => $couponCode]);
+
+    if ($coupon && $coupon->isIsValid()) {
+        $discount = $coupon->getDiscount();
+        $total = $total - ($total * $discount / 100); 
+    }
+
+    return $this->render("cart/index.html.twig", [
+        'data' => $data,
+        'total' => $total,
+        'totalItems' => $totalItems,
+        'discount' => $discount 
+    ]);
+}
+
 
     private function calculateTotalItems($cart)
     {
