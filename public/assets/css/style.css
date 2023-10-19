@@ -20,8 +20,10 @@ body {
     background-repeat: no-repeat; 
     background-size: cover; 
     /* background-color: rgb(253, 238, 220); */
-    min-height: 950px !important;
-    position: relative;
+    /* position: relative;
+    display: flex;
+    flex-direction: column; */
+    min-height: 100vh;
 }
 
 table, h1, h2, h3, h4, h5, h6, p {
@@ -72,13 +74,6 @@ table, h1, h2, h3, h4, h5, h6, p {
     color: var(--cercle-color);
 }
 
-
-main {
-    min-height: 950px !important;
-    position: relative;
-    z-index: 2;
-}
-
 .p-3 {
     background-color: rgba(0, 0, 0, 0.2);
 }
@@ -93,12 +88,42 @@ main {
     background-color: #ffe8f4;
 }
 
+/* ******* FOOTER ************** */
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+.content-wrapper {
+    flex: 1;  /
+}
+
+.footer {
+    background-color: rgb(24, 24, 24);
+
+}
+
+
+main {
+    flex: 1 0 auto; 
+    min-height: 550px !important;
+    position: relative;
+    z-index: 2;
+}
+
+/* ************************* */
+
 .fixed-bottom {
     background-color: rgb(24, 24, 24);
-    margin-top: 50px;
-    position: absolute;
-    bottom: -5px !important;
+    position: static !important;
+    right: 0;
+    bottom: 35px; 
+    left: 0;
+    z-index: 1030;
 }
+
 
 .navbar {
     background-color: rgba(255, 228, 208, 0.2) !important;
@@ -182,12 +207,72 @@ h1, h2, h3, h4, h5, h6, p, a {
     text-decoration: none;
 }
 
-.margin-malus {
-    /* margin-left: -1154px !important; */
+.carousel-indicators li::before {
+    content: "" !important;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    height: 3rem !important;
+}   
+
+.carousel-control-prev {
+    background-image: linear-gradient(to right, 
+    #4e0b31, 
+    #6e3553, 
+    #8e5c77, 
+    #af859c, 
+    #d1afc3, 
+    rgba(223, 196, 214, 0.8), 
+    rgba(238, 217, 233, 0.6), 
+    rgba(253, 239, 251, 0.4), 
+    rgba(252, 243, 253, 0.3), 
+    rgba(252, 248, 255, 0.2), 
+    rgba(253, 251, 255, 0.1), 
+    rgba(255, 255, 255, 0));
+    transition: 0.3s;
+}
+
+.carousel-control-next {
+    background-image: linear-gradient(to right, 
+    rgba(255, 255, 255, 0), 
+    rgba(253, 251, 255, 0.1), 
+    rgba(252, 248, 255, 0.2), 
+    rgba(252, 243, 253, 0.3), 
+    rgba(253, 239, 251, 0.4), 
+    rgba(238, 217, 233, 0.6), 
+    rgba(223, 196, 214, 0.8), 
+    #d1afc3, 
+    #af859c, 
+    #8e5c77, 
+    #6e3553, 
+    #4e0b31) !important; 
+    transition: 0.3s;
+}
+
+.carousel-caption h5{
+    font-weight: 600;
+    font-size: 1.7rem;
+    font-family: 'Barlow', sans-serif;
+}
+
+.carousel-caption p{
+    font-weight: 400;
+    font-size: 1.1rem;
+    font-family: 'Barlow', sans-serif;
 }
 
 .btn {
     margin-left: -15px;
+    margin: 2px;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 2000;
+}
+
+.btn-home {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
 }
 
 .bis {
@@ -294,7 +379,7 @@ h1, h2, h3, h4, h5, h6, p, a {
 .bottom-div {
     width: 100%;
     height: 300px;
-    background-color: #ffcccb; 
+    /* background-color: #ffcccb;  */
     margin-top: 5px;
 }
 
@@ -325,12 +410,6 @@ span {
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
     background-color: #ffffff;
-}
-
-.test {
-    width: 100%;
-    height: 500px;
-    background-color: #fbf1f1;
 }
 
 .row {
@@ -407,6 +486,19 @@ span {
     padding: 15px;
     /* text-align: center; */
     margin-left: -15px;
+
+}
+
+.card-body-home {
+    position: relative;
+    height: 230px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.card-body-home {
+   margin-bottom: 10px;
 }
 
 .card-body2 {
@@ -428,16 +520,18 @@ span {
     font-weight: 600;
 }
 
+.card-text {
+    padding: 5px;
+}
+
+.card-padding {
+    padding: 5px;
+}
+
 .card-price,
 .card-quantity,
 .card-subtotal {
     margin-bottom: 10px;
-}
-
-.btn {
-    /* padding: 5px 10px; */
-    margin: 2px;
-    cursor: pointer;
 }
 
 .btn-success {
@@ -572,13 +666,21 @@ span {
     padding: 0 10%;
 }
 
-/* .left-block {
-    width: 65%;  
-} */
+.letter-spa {
+    letter-spacing: -0.031em;
+}
 
-/* .right-block {
-    width: 45%;  
-} */
+.carousel-inner img {
+    height: 100%;  
+    width: 100%;  
+    object-fit: cover;
+  }
+
+  .carousel-inner, .carousel-item {
+    height: 400px;
+  }
+  
+  
 
 
 

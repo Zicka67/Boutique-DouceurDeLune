@@ -2,20 +2,30 @@
 
 namespace App\Controller;
 
-use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ProductsRepository;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function index(CategoriesRepository $categoriesRepository): Response
+    private $productsRepository;
+
+    public function __construct(ProductsRepository $productsRepository)
     {
-        // $categoriesRepository = $categoriesRepository->findAll();
+        $this->productsRepository = $productsRepository;
+    }
+
+
+    #[Route('/', name: 'home')]
+    public function index()
+    {
+        // Récupère les produits depuis la DBs
+        $products = $this->productsRepository->findAll();
+
+        // Render a la vue
         return $this->render('home/index.html.twig', [
-            'categories' => $categoriesRepository->findBy([], ['categoryOrder' => 'asc'])
+            'products' => $products,
         ]);
     }
-    
 }
+

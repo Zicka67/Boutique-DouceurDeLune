@@ -29,12 +29,12 @@
                 <li class="list-group-item"> Prix : {{ (product.price / 100)|number_format(2, ',', '') }}€ </li>
                 <div class="card-body">
                     <button type="button" class="btn btn-primary">
-                        <a href="https://buy.stripe.com/test_9AQ8yCa4zgzidlC7sx" class="card-link">Acheter</a>
+                        <a href="https://buy.stripe.com/test_9AQ8yCa4zgzidlC7sx" class="card-link">Payer</a>
                     </button>
                     <a href="{{ path('cart_add', {id: product.id}) }}" class="btn btn-primary bis">
-                        Ajouter
+                        Acheter
                     </a>
-                    <button class="add-to-cart-button btn btn-primary bis" data-product-id="{{ product.id }}">Add to cart</button>
+                    <button class="add-to-cart-button btn btn-primary bis" data-product-id="{{ product.id }}">Ajouter</button>
 
                 </div>
             </div>
