@@ -33,12 +33,12 @@
                                     <h2 class="card-title">{{ element.product.name }}</h2>
                                     <p class="card-price">{{ element.product.price / 100 }} €</p>
                                     <p class="card-quantity">
-                                        Quantité : {{ element.quantity }} &nbsp;
+                                        Quantité : <span id="quantityForProduct{{ element.product.id }}">{{ element.quantity }}</span> &nbsp;
                                         <a href="{{ path("cart_add", { id: element.product.id }) }}" class="btn btn-success">+</a>
                                         <a href="{{ path("cart_remove", { id: element.product.id }) }}" class="btn btn-warning">-</a>
                                        
                                     </p>
-                                    <p class="card-subtotal"> En stock : {{ element.product.stock }}</p>
+                                    <p class="card-subtotal"> En stock : <span id="stockForProduct{{ element.product.id }}">{{ element.product.stock }}</span></p>
                                     <p class="card-subtotal">{{ element.quantity * element.product.price / 100 }} €</p>
                                     <a href="{{ path("cart_delete", { id: element.product.id }) }}" class="btn btn-danger">Supprimer</a>
                                 </div>
@@ -79,6 +79,6 @@
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 {% endblock %}
