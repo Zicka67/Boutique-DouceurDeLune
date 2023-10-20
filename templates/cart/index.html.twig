@@ -33,12 +33,12 @@
                                     <h2 class="card-title">{{ element.product.name }}</h2>
                                     <p class="card-price">{{ element.product.price / 100 }} €</p>
                                     <p class="card-quantity">
-                                        Quantité : <span class="gold">{{ element.quantity }} &nbsp;</span> 
+                                        Quantité : {{ element.quantity }} &nbsp;
                                         <a href="{{ path("cart_add", { id: element.product.id }) }}" class="btn btn-success">+</a>
                                         <a href="{{ path("cart_remove", { id: element.product.id }) }}" class="btn btn-warning">-</a>
                                        
                                     </p>
-                                    <p class="card-subtotal"> En stock : {{ element.product.stock }}</p>
+                                    <p class="card-subtotal"> En stock : <span id="stockForProduct{{ element.product.id }}">{{ element.product.stock }}</span></p>
                                     <p class="card-subtotal">{{ element.quantity * element.product.price / 100 }} €</p>
                                     <a href="{{ path("cart_delete", { id: element.product.id }) }}" class="btn btn-danger">Supprimer</a>
                                 </div>
@@ -93,45 +93,6 @@
         </div>
     </div>
 </div>
-
-
-<script>
-function updateCart(productId, newQuantity) {
-  // Utilisation de Fetch API pour envoyer une requête AJAX à Symfony
-  fetch('/update-cart', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: `productId=${productId}&quantity=${newQuantity}`
-  })
-  .then(response => response.json())
-  .then(data => {
-    // Mettre à jour le total et la remise dans le DOM
-    document.getElementById('total').innerText = data.total / 100 + " €";
-    if (data.discount > 0) {
-      document.getElementById('discount').innerText = ` (${data.discount}% de remise)`;
-    }
-  })
-  .catch((error) => console.error('Erreur:', error));
-}
-
-function addProductToCart(productId) {
-  fetch(`/add/${productId}`, {
-    method: 'GET',
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest' // Pour que Symfony détecte que c'est une requête AJAX
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-    // Mettre à jour le nombre total d'articles dans le panier dans le DOM
-    document.getElementById('totalItems').innerText = data.totalItems;
-  })
-  .catch((error) => console.error('Erreur:', error));
-}
-
-</script>
 
 
 {% endblock %}

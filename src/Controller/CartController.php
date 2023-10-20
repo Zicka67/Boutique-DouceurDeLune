@@ -82,36 +82,51 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     
 
     #[Route('/add/{id}', name: 'add')]
-    public function add(Products $product, SessionInterface $session, EntityManagerInterface $em, Request $request)
+    public function add(Products $product, SessionInterface $session, EntityManagerInterface $em, Request $request, ProductsRepository  $productsRepository)
     {
-    $id = $product->getId();
-    $panier = $session->get('panier', []);
-
-    if($product->getStock() > 0) {
-        if(!isset($panier[$id])) {
-            $panier[$id] = 0;
-        }
-        $panier[$id]++;
+        $id = $product->getId();
+        $panier = $session->get('panier', []);
+      
     
-        // Décrémentez le stock du produit
-        $product->setStock($product->getStock() - 1);
-        $em->persist($product);  
-        $em->flush();
-    
-        // Mettez à jour le panier dans la session
-        $session->set('panier', $panier);
-    } else {
-        $this->addFlash('warning', 'Le produit ' . $product->getName() . ' est en rupture de stock.');
-    }
-
-    $totalItems = $this->calculateTotalItems($session->get('panier', []));
-    // Si la requête est en AJAX, retourne une réponse JSON
-    if ($request->isXmlHttpRequest()) {
-        return new JsonResponse(['totalItems' => $totalItems]);
-    }
+        if($product->getStock() > 0) {
+            if(!isset($panier[$id])) {
+                $panier[$id] = 0;
+            }
+            $panier[$id]++;
         
-    return $this->redirectToRoute('cart_index');
-}
+            // Décrémente le stock du produit
+            $product->setStock($product->getStock() - 1);
+            $em->persist($product);  
+            $em->flush();
+        
+            // Met à jour le panier dans la session
+            $session->set('panier', $panier);
+        } else {
+            $this->addFlash('warning', 'Le produit ' . $product->getName() . ' est en rupture de stock.');
+        }
+    
+        $total = 0;
+        foreach($panier as $id => $quantity){
+            $product = $productsRepository->find($id);
+            $total += $product->getPrice() * $quantity;
+        }
+    
+        $totalItems = $this->calculateTotalItems($session->get('panier', []));
+    
+        // Si la requête est en AJAX, retourne une réponse JSON
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse([
+                'totalItems' => $totalItems,
+                'total' => $total,
+                'productId' => $id, 
+                'newStock' => $product->getStock(),
+                'newQuantity' => $panier[$id]  
+            ]);
+        }
+        
+        return $this->redirectToRoute('cart_index');
+    }
+    
 
     #[Route('/remove/{id}', name: 'remove')]
     public function remove(Products $product, SessionInterface $session, EntityManagerInterface $em, Request $request)

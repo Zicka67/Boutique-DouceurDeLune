@@ -35,11 +35,11 @@
         {% block body %}{% endblock %}
 
         {% include "_partials/_footer.html.twig" %}
-
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script src="{{ asset("assets/js/script.js") }}"></script>
             <script src="{{ asset("assets/js/bootstrap/bootstrap.bundle.min.js") }}" defer> </script>
-             <script src="{{ asset('assets/app.js') }}"></script>
+            <script src="{{ asset("script.js") }}"></script>
         {% endblock %}
     </body>
 
