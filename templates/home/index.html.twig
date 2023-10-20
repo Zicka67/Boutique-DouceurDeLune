@@ -67,7 +67,7 @@
                     {% for product in products %}
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="{{ asset('img/' ~ product.imgName) }}" alt="{{ product.name }}" width="396" height="230" style="border-top-right-radius: 5px; border-top-right-radius: 5px;">
+                            <img src="{{ asset('img/' ~ product.imgName) }}" alt="{{ product.name }}">
                             <div class="card-body-home">
                                 <h5 class="card-title card-padding">{{ product.name }} </h5>
                                 <p class="card-text">{{ product.description }}</p>
