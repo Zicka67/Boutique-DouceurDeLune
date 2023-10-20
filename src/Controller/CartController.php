@@ -3,44 +3,73 @@
 namespace App\Controller;
 
 use App\Entity\Products;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Repository\CouponsRepository;
 use App\Repository\ProductsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 
-#[Route('/cart', name: 'cart_')]
-class CartController extends AbstractController
-{
+    #[Route('/cart', name: 'cart_')]
+    class CartController extends AbstractController
+    {
 
     #[Route('/', name: 'index')]
-    public function index(SessionInterface $session, ProductsRepository $productsRespository)
+    public function index(SessionInterface $session, ProductsRepository $productsRespository, Request $request, CouponsRepository $couponsRepository)
     {
         $panier = $session->get('panier', []);
         // Initialisation
         $data = [];
         $total = 0;
-
-        foreach($panier as $id => $quantity){
+    
+        foreach($panier as $id => $quantity) {
             $product = $productsRespository->find($id);
-
-            $data[] = [
-                'product' => $product,
-                'quantity' => $quantity,
-            ];
-            $total += $product->getPrice() * $quantity;
+            
+            // Vérifie si le produit existe
+            if ($product) {
+                $data[] = [
+                    'product' => $product,
+                    'quantity' => $quantity,
+                ];
+                $total += $product->getPrice() * $quantity;
+            }
         }
+    
         $totalItems = $this->calculateTotalItems($panier);
-
-        return $this->render("cart/index.html.twig", compact('data', 'total', 'totalItems'));
-
+    
+        // Récupération du coupon de la session
+        $discount = $session->get('discount', 0);
+    
+        $couponCode = $request->request->get('code');
+    
+        // Si un nouveau coupon est envoyé
+        if ($couponCode) {
+            $coupon = $couponsRepository->findOneBy(['code' => $couponCode]);
+            if ($coupon && $coupon->isIsValid()) {
+                $discount = $coupon->getDiscount();
+                // Save de la discount en session
+                $session->set('discount', $discount);
+            }
+        }
+    
+        // Application de la remise
+        $total = $total - ($total * $discount / 100); 
+    
+        return $this->render("cart/index.html.twig", [
+            'data' => $data,
+            'total' => $total,
+            'totalItems' => $totalItems,
+            'discount' => $discount 
+        ]);
     }
+    
+
 
     private function calculateTotalItems($cart)
     {
@@ -215,4 +244,45 @@ public function addToCart(Request $request, SessionInterface $session, ProductsR
         ], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
+
+
+#[Route('/update-cart', name: 'update_cart', methods: ["POST"])]
+public function updateCart(SessionInterface $session, Request $request, ProductsRepository $productsRepository, CouponsRepository $couponsRepository)
+{
+    // Récupérer les données de la requête
+    $productId = $request->request->get('productId');
+    $quantity = $request->request->get('quantity');
+    
+    // Mettre à jour la quantité dans la session
+    $panier = $session->get('panier', []);
+    $panier[$productId] = $quantity;
+    $session->set('panier', $panier);
+    
+    // Initialisation
+    $data = [];
+    $total = 0;
+    $totalItems = 0;
+
+    // Calcul du total
+    foreach($panier as $id => $quantity){
+        $product = $productsRepository->find($id);
+        if ($product) {
+            $total += $product->getPrice() * $quantity;
+            $totalItems += $quantity;
+        }
+    }
+
+    // Récupération du coupon de la session
+    $discount = $session->get('discount', 0);
+
+    // Application de la remise
+    $total = $total - ($total * $discount / 100);
+    
+    return new JsonResponse([
+        'total' => $total,
+        'totalItems' => $totalItems,
+        'discount' => $discount
+    ]);
+}
+
 }

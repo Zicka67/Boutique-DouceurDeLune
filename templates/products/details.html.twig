@@ -12,7 +12,7 @@
 <main class="container">
     <section class="row">
         <div class="col-12">
-            <h1 class="main-title">Caractéristique de  {{ product.name }}</h1>
+            <h1 class="main-title react-root2">Caractéristique de  {{ product.name }}</h1>
         </div>
 
             <div class="card mb-5">
@@ -29,12 +29,12 @@
                 <li class="list-group-item"> Prix : {{ (product.price / 100)|number_format(2, ',', '') }}€ </li>
                 <div class="card-body">
                     <button type="button" class="btn btn-primary">
-                        <a href="https://buy.stripe.com/test_9AQ8yCa4zgzidlC7sx" class="card-link">Acheter</a>
+                        <a href="https://buy.stripe.com/test_9AQ8yCa4zgzidlC7sx" class="card-link">Payer</a>
                     </button>
-                    {# <a href="{{ path('cart_add', {id: product.id}) }}" class="btn btn-primary bis">
+                    <a href="{{ path('cart_add', {id: product.id}) }}" class="btn btn-primary bis">
                         Ajouter
-                    </a> #}
-                    <button class="add-to-cart-button btn btn-primary" data-product-id="{{ product.id }}">Ajouter</button>
+                    </a>
+                    <button class="add-to-cart-button" data-product-id="{{ product.id }}">Add to cart</button>
 
                 </div>
             </div>

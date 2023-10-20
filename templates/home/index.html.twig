@@ -14,30 +14,74 @@
             <h1 class="main-title react-root1" style="visibility: hidden;">Bienvenue sur Douceur de lune la boutique !</h1>
 
             <div class="test"> 
+                <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+
+
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="img/carousel1.jpg" class="d-block w-100" alt="Image 1">
+                    <div class="carousel-caption">
+                        <h5>Nos biberons !</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In nobis ipsum, reiciendis voluptate est atque fuga ad animi dolore voluptates recusandae illo labore sit, aspernatur sequi, perspiciatis similique corrupti nihil.</p>
+                    </div>
+                    </div>
+                    <div class="carousel-item">
+                    <img src="img/carousel3.jpg" class="d-block w-100" alt="Image 2">
+                    <div class="carousel-caption">
+                        <h5>Nos tétines !</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde odio est fugit doloremque earum, corporis suscipit, maiores eos explicabo cumque esse minus voluptatem! Veniam, unde facilis. Dolorum aperiam aspernatur iure.</p>
+                    </div>
+                    </div>
+                    <div class="carousel-item">
+                    <img src="img/carousel4.jpg" class="d-block w-100" alt="Image 3">
+                    <div class="carousel-caption">
+                        <h5>Nos porte-bébé !</h5>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi iure, officia non explicabo accusamus praesentium ad soluta voluptate fugit fugiat eum dignissimos vero laboriosam. Hic laboriosam cum fugit sapiente mollitia.</p>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Contrôles (flèches gauche et droite) -->
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </a>
+                </div>
+
+
             </div>
         </div>
 
     </main>
 
-    <section class="main">
+            <!-- Conteneur principal -->
+            <div class="container my-5">
+                <div class="row">
 
-        <div class="bottom-div">
-            
-        </div>
+                    <!-- Cartes -->
+                    {% for product in products %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            {# <image href="{{ asset('img/' ~ product.imgName) }}" x="0" y="-100" width="118" height="150"></image> #}
+                            <div class="card-body-home">
+                                <h5 class="card-title card-padding">{{ product.name }} </h5>
+                                <p class="card-text">{{ product.description }}</p>
+                                <a href="{{ path('products_details', { slug: product.slug }) }}" class="btn btn-home btn-primary">
+                                    Voir le produit
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-    </section>
+                    {% endfor %}
 
-     <section class="main2">
+                </div>
 
-        <div class="bottom-div">
-            
-        </div>
-        
-    </section>
+            </div>
 
-    <div> </div>
-
-    <div> </div>
-
-    <div> </div>
 {% endblock %}
