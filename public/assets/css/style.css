@@ -19,7 +19,6 @@ body {
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
-
     min-height: 100vh;
 }
 
@@ -187,7 +186,7 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 .margin-title-cart {
     /* width: 50%; */
-    margin-left: 82px;
+    /* margin-left: 82px; */
 }
 
 .list-title {
@@ -384,9 +383,9 @@ h1, h2, h3, h4, h5, h6, p, a {
     /* background-color: rgba(0, 0, 0, 0.7); */
     z-index: 1;
     /* background-image: url('/img/fond-aquarelle-rose-peint-main-detaille_1048-17039.webp'); */
-    background-position: center; 
+    /* background-position: center; 
     background-repeat: no-repeat; 
-    background-size: cover; 
+    background-size: cover;  */
 }
 
 .bottom-div {
@@ -394,13 +393,6 @@ h1, h2, h3, h4, h5, h6, p, a {
     height: 300px;
     /* background-color: #ffcccb;  */
     margin-top: 5px;
-}
-
-.full-background {
-    /* background-image: url('/img/fond-aquarelle-rose-peint-main-detaille_1048-17039.webp'); */
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-size: cover;
 }
 
 .progress-bar {
